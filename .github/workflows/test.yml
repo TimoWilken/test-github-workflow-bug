@@ -1,0 +1,16 @@
+---
+name: Reproduce workflow bug
+
+'on':
+  push:
+
+jobs:
+  test:
+    name: Reproduce bug
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: This should be skipped
+        if: false && ${{ true }}
+        run: |
+          echo '::error::This should have been skipped!'
